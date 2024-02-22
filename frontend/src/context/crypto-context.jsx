@@ -41,12 +41,22 @@ export function CryptoContextProvider({ children }) {
     preload();
   }, []);
 
+  function removeAsset(assetToRemove) {
+    setAssets((current) =>
+      current.filter((asset) => {
+        return asset.id !== assetToRemove.id;
+      })
+    );
+  }
+
   function addAsset(newAsset) {
     setAssets((prev) => mapAssets([...prev, newAsset], crypto));
   }
 
   return (
-    <CryptoContext.Provider value={{ loading, crypto, assets, addAsset }}>
+    <CryptoContext.Provider
+      value={{ loading, crypto, assets, addAsset, removeAsset }}
+    >
       {children}
     </CryptoContext.Provider>
   );

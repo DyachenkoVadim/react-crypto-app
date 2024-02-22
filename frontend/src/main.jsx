@@ -19,6 +19,13 @@ createRoot(root).render(
         colorSuccess: "#a0d911",
         colorError: "#FF4D4F",
       },
+      components: {
+        Spin: {
+          colorBgMask: "#393E46",
+          colorWhite: "rgb(214, 90, 49)",
+          dotSize: 32,
+        },
+      },
       algorithm: theme.darkAlgorithm,
     }}
   >

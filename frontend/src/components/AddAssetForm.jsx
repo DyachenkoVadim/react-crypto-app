@@ -24,10 +24,10 @@ const validateMessages = {
   },
 };
 
-export default function AddAssetForm({ onClose }) {
+export default function AddAssetForm({ onClose, selectedCoin }) {
   const [form] = Form.useForm();
   const { crypto, addAsset } = useCrypto();
-  const [coin, setCoin] = useState(null);
+  const [coin, setCoin] = useState(selectedCoin);
   const [submitted, setSubmitted] = useState(false);
   const assetRef = useRef();
 
@@ -118,7 +118,13 @@ export default function AddAssetForm({ onClose }) {
       autoComplete="off"
       validateMessages={validateMessages}
     >
-      <CoinInfo coin={coin} />
+      <CoinInfo
+        coin={coin}
+        withCross={true}
+        onClose={() => {
+          setCoin(null);
+        }}
+      />
       <Divider />
 
       <Form.Item

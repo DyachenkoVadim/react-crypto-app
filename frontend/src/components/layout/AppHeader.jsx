@@ -73,7 +73,7 @@ export default function AppHeader() {
     <Layout.Header style={headerStyle}>
       <Select
         style={{
-          width: 250,
+          width: "23.5%",
         }}
         open={select}
         onSelect={handleSelect}
@@ -99,6 +99,7 @@ export default function AppHeader() {
         type="primary"
         onClick={() => {
           setDrawer(true);
+          setCoin(null);
         }}
       >
         Add Asset
@@ -110,7 +111,13 @@ export default function AppHeader() {
         }}
         footer={null}
       >
-        <CoinInfoModal coin={coin} />
+        <CoinInfoModal
+          coin={coin}
+          onClick={() => {
+            setDrawer(true);
+            setModal(false);
+          }}
+        />
       </Modal>
 
       <Drawer
@@ -122,7 +129,12 @@ export default function AppHeader() {
         open={drawer}
         destroyOnClose
       >
-        <AddAssetForm onClose={() => setDrawer(false)} />
+        <AddAssetForm
+          onClose={() => {
+            setDrawer(false);
+          }}
+          selectedCoin={coin}
+        />
       </Drawer>
     </Layout.Header>
   );

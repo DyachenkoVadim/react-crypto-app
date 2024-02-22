@@ -1,7 +1,7 @@
-import { Flex, Tag, Typography, Divider } from "antd";
+import { Flex, Tag, Typography, Divider, Button } from "antd";
 import CoinInfo from "./CoinInfo";
 
-export default function CoinInfoModal({ coin }) {
+export default function CoinInfoModal({ coin, onClick }) {
   return (
     <>
       <CoinInfo coin={coin} withSymbol />
@@ -38,6 +38,10 @@ export default function CoinInfoModal({ coin }) {
           {coin.contractAddress}
         </Typography.Paragraph>
       )}
+
+      <Button type="primary" onClick={onClick}>
+        Add Asset
+      </Button>
     </>
   );
 }

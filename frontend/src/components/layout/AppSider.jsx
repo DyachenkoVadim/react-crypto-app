@@ -1,8 +1,9 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useRef, useContext } from "react";
 import { Layout, Card, Statistic, List, Typography, Tag } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { capitalize } from "../../utils";
 import CryptoContext from "../../context/crypto-context.jsx";
+import CloseCross from "../CloseCross.jsx";
 
 const siderStyle = {
   backgroundColor: "#222831",
@@ -15,9 +16,13 @@ export default function AppSider() {
   return (
     <Layout.Sider width="25%" style={siderStyle}>
       {assets.map((asset) => (
-        <Card key={asset.id} style={{ marginBottom: "1rem" }}>
+        <Card
+          key={asset.id}
+          style={{ marginBottom: "1rem" }}
+          extra={<CloseCross asset={asset} />}
+          title={capitalize(asset.id)}
+        >
           <Statistic
-            title={capitalize(asset.id)}
             value={asset.totalAmount}
             precision={2}
             valueStyle={{ color: asset.grow ? "#a0d911" : "#FF4D4F" }}
@@ -34,6 +39,7 @@ export default function AppSider() {
               },
               { title: "Asset Amount", value: asset.amount, isPlain: true },
               // {title: 'Difference', value: asset.growPercent},
+              { title: "Price", value: asset.price, isPlain: false },
             ]}
             renderItem={(item) => (
               <List.Item>
